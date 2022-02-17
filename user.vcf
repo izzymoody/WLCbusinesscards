@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iPhone OS 11.2.2//EN
+N:Moody;Izzy;;;
+FN: Izzy  Moody 
+ORG:Davidson;
+TITLE:Gig hub consultant\nDavidson College
+EMAIL;type=INTERNET;type=WORK;type=pref:izmoody@davidson.edu
+TEL;type=WORK;type=VOICE:+18477676216
+item1.X-ABADR:sg
+item2.URL;type=pref:davidson.edu
+item2.X-ABLabel:_$!<HomePage>!$_
+END:VCARD

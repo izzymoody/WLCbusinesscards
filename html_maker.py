@@ -18,23 +18,25 @@ def html_maker(wildcatsync_fourm):
            # col_indexes[i]= data[0][i]
     data = open(wildcatsync_fourm, 'r')
 
-    #print(len(lines))
     lines = data.readlines()
-    this_line = lines[4]
-    #array = this_line.split(',')
-    #print(array[5])
-    #print(lines[3])
-    email= 3
+  
 
-    # array = line.split(',')
-    array = []
-    for line in lines:
-        array.append(line.split(','))
-
-
+    this_line = lines[4] #string for person 
+    this_line = this_line.split(',') #split makes it an array 
+    #print(this_line[3]) # indexing now selects field from fourm 
+   
+    #i was thinking if we manually write the indexes of the info we need then select 
+    # it in the for loop ex email = 3 so we can say this_line[email]
+    email = 3
+    #this for loop works 
+    for line in range(len(lines)):
+        this_line = lines[line].split(',')
+        for field in range(len(this_line)):
+            if line >= 3:
+                if field == email:
+                    print(this_line[email])
+            
     
-    for person in range(len(array)):
-        print(array[person][3])
 
     return 0 
 

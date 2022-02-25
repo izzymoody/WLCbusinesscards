@@ -6,11 +6,8 @@ __copyright__ = "Copyright 2022, Women's in Leadership Conference"
 def html_maker(wildcatsync_fourm):
     data = open(wildcatsync_fourm, 'r')
     lines = data.readlines() 
-    #lname = "moody"
-    #output_name = "/Users/izzymoody/Desktop/WLC/digital-namecard-master/%s.csv" %lname
    
-    #i was thinking if we manually write the indexes of the info we need then select 
-    # it in the for loop ex email = 3 so we can say this_line[email]
+    #field #s
     email = 17
     fname = 4
     lname = 5
@@ -22,9 +19,8 @@ def html_maker(wildcatsync_fourm):
     d_connect = 35
     social = 37
     quote = 38
+    vc = ""
 
-
-    #this for loop works 
     for line in range(len(lines)):
         main = ""
         this_line = lines[line].split('\t')
@@ -46,10 +42,12 @@ def html_maker(wildcatsync_fourm):
                     else:
                         print(this_line[linkedin])
                         main += website_field(this_line[linkedin])
+                        
+                    vc = vcard(this_line[fname], this_line[lname], this_line[email], this_line[cell], this_line[website])
+                else:
+                    vc = vcard(this_line[fname], this_line[lname], this_line[email], this_line[cell], '')
                # do this for optional fields
 
-
-                #write main to html file
 		
         username = this_line[fname][0] + "_" + this_line[lname] + ".html"
 
@@ -57,7 +55,10 @@ def html_maker(wildcatsync_fourm):
         f.write(main)
         f.close()
 
-
+        vcf = username = this_line[fname][0] + "_" + this_line[lname] + ".vcf"
+        f = open(vcf, "w")
+        f.write(vc)
+        f.close()
 
 def header(fname, lname):
 
@@ -199,6 +200,29 @@ def footer(fname, lname):
     """.format(username)
 
     return section
+
+def vcard(fname, lname, email, phone, website):
+    name = fname + " " + lname
+
+    section = """
+    BEGIN:VCARD
+    VERSION:3.0
+    PRODID:-//Apple Inc.//iPhone OS 11.2.2//EN
+    N:{};{};;;
+    FN: {}
+    ORG:Davidson College;
+    TITLE:Women's Leadership Conference
+    EMAIL;type=INTERNET;type=WORK;type=pref:{}
+    TEL;type=WORK;type=VOICE:+{}
+    item1.X-ABADR:sg
+    item2.URL;type=pref:{}
+    item2.X-ABLabel:_$!<HomePage>!$_
+    END:VCARD
+    """.format(lname, fname, name, email, phone, website)
+
+
+    return section
+
 
 
 def main():

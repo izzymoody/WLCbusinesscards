@@ -44,6 +44,15 @@ def html_maker(wildcatsync_fourm):
                         main += website_field(this_line[linkedin])
                         
                     vc = vcard(this_line[fname], this_line[lname], this_line[email], this_line[cell], this_line[website])
+                if field == d_connect:
+                    text = "{} {}'s Davidson Connect: {}\n".format(this_line[fname], this_line[lname], this_line[d_connect])
+                    notes = notes + text
+                if field == social:
+                    text = "{} {}'s Social media: {}\n".format(this_line[fname], this_line[lname], this_line[social])
+                    notes = notes + text
+                if field == quote:
+                    text = "{} {}'s Quote/Tagline: {}".format(this_line[fname], this_line[lname], this_line[quote])
+                    notes = notes + text
                 else:
                     vc = vcard(this_line[fname], this_line[lname], this_line[email], this_line[cell], '')
                # do this for optional fields
@@ -67,7 +76,6 @@ def header(fname, lname):
     section = """
     <!DOCTYPE html>
     <html>
-
     <head>
     <link rel="stylesheet" href="main.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:200,300,400,700' rel='stylesheet' type='text/css'>
@@ -170,6 +178,29 @@ def website_field(parameter):
 			</div>
 		</a>
 	</section> """.format(parameter, parameter)
+
+    #print(section)
+
+    return section
+
+def notes_field(parameter):
+
+    section = """
+	<section class="bg-color-white secondary-info">
+		<div class="container">
+			<div class="row detail">
+				<div class="col">
+					<img src="assets/icon-address.svg" alt="Address Icon">
+				</div>
+				<div class="col is-8">
+					<p class="text-detail">{}</p>
+				</div>
+				<div class="col">
+					<img src="assets/right-arrow.svg" alt="Right Arrow" height="50%" width="40%">
+				</div>
+			</div>
+		</div>
+	</section>""".format(parameter)
 
     #print(section)
 
